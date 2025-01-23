@@ -21,6 +21,9 @@ Select menu textbox
 Select menu buttons
     click    ${buttonsMenu}
 
+Select menu Checkbox
+    click    ${checkboxMenu}
+
 Input fullname in menu textbox
     [Arguments]    ${fullnameData}
     Fill Text    ${textBox.fullnameInput}    ${fullnameData}
@@ -39,3 +42,11 @@ Input Permanent Address in menu text Box
 
 Select Submit
     Click    ${submitButton}
+
+Double Click Buttons
+    Click With Options    ${doubleClilckButton}    clickCount=2
+
+Verify Click Buttons
+    [Arguments]    ${expect}
+    ${text}    Get Text    ${doubleClilckMessage}
+    Should Be Equal    ${expect}    ${text}
