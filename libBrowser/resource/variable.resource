@@ -13,3 +13,7 @@ ${submitButton}                 id=submit
 ${buttonsMenu}                  text=Buttons
 ${doubleClilckButton}           id=doubleClickBtn
 ${doubleClilckMessage}          id=doubleClickMessage
+
+# Checkbox
+${checkboxMenu}                 text=Check Box
+${homeBox}                      id=tree-node-home
