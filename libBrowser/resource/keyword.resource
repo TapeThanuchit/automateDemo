@@ -1,5 +1,6 @@
 *** Settings ***
 Library     Browser
+Library     String
 Resource    variable.resource
 
 
@@ -10,7 +11,7 @@ Open Test Browser
 
 New Test Page Browser
     [Arguments]    ${url}
-    New Page    ${url}
+    New Page    ${url}    wait_until=load
 
 Enter Menu Elements
     Click    ${elementsCard}
@@ -50,3 +51,31 @@ Verify Click Buttons
     [Arguments]    ${expect}
     ${text}    Get Text    ${doubleClilckMessage}
     Should Be Equal    ${expect}    ${text}
+
+Expand All Checkbox
+    Click    ${expandButton}
+
+Count Checkbox
+    ${valueCheckbox}    Get Element Count    ${checkboxElements}
+    RETURN    ${valueCheckbox}
+
+Select all checkbox
+    [Arguments]    ${checkboxCount}
+    IF    ${checkboxCount} == 1
+        Check Checkbox    xpath=(//span[@class="rct-checkbox"])[1]
+    ELSE
+        FOR    ${counter}    IN RANGE    1    ${checkboxCount}
+            ${locator}    Set Variable    xpath=(//span[@class="rct-checkbox"])[${counter}]
+            Scroll To Element    ${locator}
+            Check Checkbox    ${locator}
+        END
+    END
+
+Select specify checkbox
+    [Arguments]    ${indexCheckbox}
+    ${pass}    Run Keyword And Return Status    Should Contain    ${indexCheckbox}    ,
+    IF    ${pass}
+        ${choice}    Split String    ${indexCheckbox}    ,
+    ELSE
+        Check Checkbox    xpath=(//span[@class="rct-checkbox"])[1]
+    END

@@ -16,4 +16,6 @@ ${doubleClilckMessage}          id=doubleClickMessage
 
 # Checkbox
 ${checkboxMenu}                 text=Check Box
-${homeBox}                      id=tree-node-home
+${homeBox}                      xpath=//label[@for="tree-node-home"]//span[@class="rct-checkbox"]
+${expandButton}                 css=#tree-node > div > button.rct-option.rct-option-expand-all
+${checkboxElements}             xpath=(//span[@class="rct-checkbox"])

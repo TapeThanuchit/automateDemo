@@ -7,7 +7,7 @@ Test Setup      New Test Page Browser    ${urlDemo}
 
 *** Test Cases ***
 Test01 Test Text Box Menu With Open Browser
-    [Tags]    show ui
+    [Tags]    textbox
     [Setup]    Open Test Browser    ${urlDemo}
     Enter Menu Elements
     Select menu textbox
@@ -21,7 +21,7 @@ Test01 Test Text Box Menu With Open Browser
 
 Test02 Test Text Box Menu With New Page
     [Documentation]    Test Menu Text Box
-    [Tags]    noui
+    [Tags]    textbox
     Enter Menu Elements
     Select menu textbox
     Input fullname in menu textbox    TestLibBrowser
@@ -32,7 +32,7 @@ Test02 Test Text Box Menu With New Page
 
 Test03 Test Buttons
     [Documentation]    Test Menu Buttons
-    [Tags]    noui
+    [Tags]    textbox
     Enter Menu Elements
     Select menu buttons
     Double Click Buttons
@@ -41,7 +41,24 @@ Test03 Test Buttons
     Take Screenshot
 
 Test04 Text Checkbox
-    [Setup]    Open Test Browser    ${urlDemo}
+    [Tags]    checkbox
     Enter Menu Elements
     Select menu Checkbox
     Check Checkbox    ${homeBox}
+    Take Screenshot
+
+Test05 Check All Checkbox
+    [Tags]    checkbox
+    Enter Menu Elements
+    Select menu Checkbox
+    Get Element Count    ${checkboxElements}    ==    1
+    Expand All Checkbox
+    Get Element Count    ${checkboxElements}    >    1
+    ${checkboxCount}    Count Checkbox
+    Select all checkbox    ${checkboxCount}
+    Take Screenshot
+
+Test06 Check Box specify menu
+    [Tags]    checkbox
+    Enter Menu Elements
+    Select menu Checkbox
