@@ -6,15 +6,16 @@ Resource    variable.resource
 
 *** Keywords ***
 Open Test Browser
-    [Arguments]    ${url}
-    Open Browser    ${url}
+    [Arguments]    ${url}    ${headlessOption}
+    Open Browser    ${url}    browser=chromium    headless=${headlessOption}
 
 New Test Page Browser
     [Arguments]    ${url}
-    New Browser    chromium    headless=${True}    timeout=10000ms
-    New Page    ${url}
+    New Browser    chromium
+    New Page    ${url}    wait_until=commit
 
 Enter Menu Elements
+    Wait For Elements State    ${elementsCard}    visible
     Click    ${elementsCard}
 
 Select menu textbox
@@ -121,3 +122,35 @@ Verify CheckBox After Expand
 
 Select Add Data in WebTables
     Click    ${addNewRecordButton}
+
+Input first name in web Tables
+    [Arguments]    ${firstname}
+    Fill Text    ${firstnameInput}    ${firstname}
+
+Input Last name in web Tables
+    [Arguments]    ${lastname}
+    Fill Text    ${lastnameInput}    ${lastname}
+
+Input Age in web Tables
+    [Arguments]    ${age}
+    Fill Text    ${ageInput}    ${age}
+
+Input Email in web Tables
+    [Arguments]    ${email}
+    Fill Text    ${emailIput}    ${email}
+
+Input Salary in web Tables
+    [Arguments]    ${salary}
+    Fill Text    ${salaryInput}    ${salary}
+
+Input Department in web tables
+    [Arguments]    ${department}
+    Fill Text    ${departmentInput}    ${department}
+
+Select Row Edit Data is
+    [Arguments]    ${index}
+    Click    id=edit-record-${index}
+
+Select Row Delete Data is
+    [Arguments]    ${index}
+    Click    id=delete-record-${index}
