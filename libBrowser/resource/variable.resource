@@ -13,7 +13,25 @@ ${submitButton}                 id=submit
 ${buttonsMenu}                  text=Buttons
 ${doubleClilckButton}           id=doubleClickBtn
 ${doubleClilckMessage}          id=doubleClickMessage
+${rightClickButton}             id=rightClickBtn
+${rightClickMessage}            id=rightClickMessage
+${defaultClickButton}           id=GKnhw
+${defaultClickMessage}          id=dynamicClickMessage
 
 # Checkbox
 ${checkboxMenu}                 text=Check Box
-${homeBox}                      id=tree-node-home
+${homeBox}                      xpath=//label[@for="tree-node-home"]//span[@class="rct-checkbox"]
+${expandButton}                 css=#tree-node > div > button.rct-option.rct-option-expand-all
+${collapseButton}               css=#tree-node > div > button.rct-option.rct-option-collapse-all
+${checkboxElements}             xpath=(//span[@class="rct-checkbox"])
+
+#Radio Button
+${radioButtonsMenu}             text=Radio Button
+${yesRadioButton}               text=Yes     #id=yesRadio
+${impressiveRadioButon}         id=impressiveRadio
+${noRadioButton}                id=noRadio
+${messageRetuenRadioCheck}      xpath=//p[@class="mt-3"]
+
+#Web Tables
+${webTablesMenu}                text=Web Tables
+${addNewRecordButton}           id=addNewRecordButton
