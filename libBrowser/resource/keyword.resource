@@ -11,7 +11,8 @@ Open Test Browser
 
 New Test Page Browser
     [Arguments]    ${url}
-    New Page    ${url}    wait_until=load
+    New Browser    chromium    headless=${True}    timeout=10000ms
+    New Page    ${url}
 
 Enter Menu Elements
     Click    ${elementsCard}
@@ -24,6 +25,12 @@ Select menu buttons
 
 Select menu Checkbox
     click    ${checkboxMenu}
+
+Select menu Radio Button
+    click    ${radioButtonsMenu}
+
+Select menu WebTables
+    Click    ${webTablesMenu}
 
 Input fullname in menu textbox
     [Arguments]    ${fullnameData}
@@ -47,12 +54,28 @@ Select Submit
 Double Click Buttons
     Click With Options    ${doubleClilckButton}    clickCount=2
 
-Verify Click Buttons
+Right Click Buttons
+    Click    ${rightClickButton}    right
+
+Verify Double Click Buttons
     [Arguments]    ${expect}
     ${text}    Get Text    ${doubleClilckMessage}
     Should Be Equal    ${expect}    ${text}
 
+Verify Right Click Butons
+    [Arguments]    ${expect}
+    ${text}    Get Text    ${rightClickMessage}
+    Should Be Equal    ${expect}    ${text}
+
+Verify Default Click Butons
+    [Arguments]    ${expect}
+    ${text}    Get Text    ${defaultClickMessage}
+    Should Be Equal    ${expect}    ${text}
+
 Expand All Checkbox
+    Click    ${expandButton}
+
+Collapse All Checkbox
     Click    ${expandButton}
 
 Count Checkbox
@@ -60,7 +83,7 @@ Count Checkbox
     RETURN    ${valueCheckbox}
 
 Select all checkbox
-    [Arguments]    ${checkboxCount}
+    ${checkboxCount}    Count Checkbox
     IF    ${checkboxCount} == 1
         Check Checkbox    xpath=(//span[@class="rct-checkbox"])[1]
     ELSE
@@ -71,11 +94,30 @@ Select all checkbox
         END
     END
 
-Select specify checkbox
-    [Arguments]    ${indexCheckbox}
-    ${pass}    Run Keyword And Return Status    Should Contain    ${indexCheckbox}    ,
-    IF    ${pass}
-        ${choice}    Split String    ${indexCheckbox}    ,
-    ELSE
-        Check Checkbox    xpath=(//span[@class="rct-checkbox"])[1]
+Select Radio Buttons
+    [Arguments]    ${radioChooseSelect}
+    IF    "${radioChooseSelect}" == "Yes"
+        Click    ${yesRadioButton}
+    ELSE IF    "${radioChooseSelect}" == "Impressive"
+        Click    ${impressiveRadioButon}
     END
+    [Return]    ${radioChooseSelect}
+
+Expect Message after Select Radio Buttons
+    [Arguments]    ${radioChooseSelect}    ${expectMessage}
+    IF    "${radioChooseSelect}" == "Yes"
+        Should Be Equal    You have selected Yes    ${expectMessage}
+    ELSE IF    "${radioChooseSelect}" == "Impressive"
+        Should Be Equal    You have selected Impressive    ${expectMessage}
+    END
+
+Verify CheckBox Before Expand or After collapse
+    [Arguments]    ${expect}
+    Get Element Count    ${checkboxElements}    ==    ${expect}
+
+Verify CheckBox After Expand
+    [Arguments]    ${expect}
+    Get Element Count    ${checkboxElements}    >    ${expect}
+
+Select Add Data in WebTables
+    Click    ${addNewRecordButton}
