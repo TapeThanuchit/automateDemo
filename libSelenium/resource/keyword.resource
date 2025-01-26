@@ -20,6 +20,11 @@ Open Test Browser with headless
     Open Browser    ${url}    browser=chrome    options=${options}
     Wait Until Element Is Visible    ${elementsCard}
 
+Open Test Browser Debugging
+    [Arguments]    ${url}
+    Open Browser    ${url}    browser=chrome
+    Wait Until Element Is Visible    ${elementsCard}
+
 Select menu textbox
     Click Element    ${textBoxMenu}
 
@@ -43,8 +48,7 @@ Input Permanent Address in menu text Box
     Input Text    ${textBox.permanentAddress}    ${permanentAddress}
 
 Select Submit
-    Scroll Element Into View    ${submitButton}
-    Click Element    ${submitButton}
+    Click Button    ${submitButton}
 
 Double Click Buttons
     Double Click Element    ${doubleClilckButton}
