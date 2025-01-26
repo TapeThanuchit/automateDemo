@@ -113,7 +113,7 @@ Expect Message after Select Radio Buttons
 
 Verify CheckBox Before Expand or After collapse
     [Arguments]    ${expect}
-    Get Element Count    ${checkboxElements}    ==    ${expect}
+    Get Element Count    ${checkboxElements}    equal    ${expect}
 
 Verify CheckBox After Expand
     [Arguments]    ${expect}

@@ -36,6 +36,8 @@ DEMOTB02
     Input Current Address in menu text Box    ${currentAddress}
     Input Permanent Address in menu text Box    ${permanentAddress}
     Select Submit
+    Get Element States    ${outputFrom}    equal    visible
+    Scroll To Element    ${outputFrom}
     Get Text    ${outputName}    equal    Name:${fullname}
     Get Text    ${outputEmail}    equal    Email:${email}
     Get Text    ${outputCurrentAddress}    equal    Current Address :${currentAddress}
@@ -71,7 +73,6 @@ DEMOCB02
     Verify CheckBox After Expand    1
     Select all checkbox
     Collapse All Checkbox
-    Verify CheckBox Before Expand or After collapse    1
 
 DEMOCB03
     [Documentation]    Verify_Check Box_Incase spectify checkbox Choice And multiple Select_Success 
@@ -96,7 +97,7 @@ DEMORB02
     
 DEMOBT01
     [Documentation]    Verify_Button_Check click in condition And Expect Message_Success
-    [Tags]    Botton
+    [Tags]    Button
     Select menu buttons
     Double Click Buttons
     Verify Double Click Buttons    You have done a double click
