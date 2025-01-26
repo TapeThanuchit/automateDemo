@@ -1,9 +1,8 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    String
-Resource    locator.resource
-Resource    keyword.resource
 Resource    ../../libexcel/excelProcess.resource
+Resource    ../../libSelenium/resource/keyword.resource
 
 *** Keywords ***
 Count Data in WebTables
@@ -18,9 +17,6 @@ Count Data in WebTables
             ${dataCount}    Evaluate    ${dataCount}+1
         END
     END
-    Log    ${dataCount}
-    #row = (//div[@class="rt-tr-group"])
-    #Firstname columm = (//div[@class="rt-tr-group"])[1]//div[@class="rt-td"][1]
 
 Add Data In Registration
     ${rowsDataTable}    Read Excel And Return Test Data

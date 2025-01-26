@@ -8,6 +8,11 @@ ${textBox.emailInput}           id=userEmail
 ${textBox.currentAddress}       id=currentAddress
 ${textBox.permanentAddress}     id=permanentAddress
 ${submitButton}                 id=submit
+${outputFrom}                   id=output
+${outputName}                   id=name
+${outputEmail}                  id=email
+${outputCurrentAddress}         xpath=//p[@id="currentAddress"]
+${outputPermanentAddress}       xpath=//p[@id="permanentAddress"]
 
 # elementCardMenu: Buttons
 ${buttonsMenu}                  text=Buttons
@@ -35,10 +40,10 @@ ${messageRetuenRadioCheck}      xpath=//p[@class="mt-3"]
 #Web Tables
 ${webTablesMenu}                text=Web Tables
 ${addNewRecordButton}           id=addNewRecordButton
-${firstnameInput}    id=firstName
-${lastnameInput}    id=lastName
-${emailIput}    id=userEmail
-${ageInput}    id=age
-${salaryInput}    id=salary
-${departmentInput}    id=department
-${rowsDataFirstName}    xpath=(//div[@class="rt-tr-group"]//div//div[@class="rt-td"])
+${firstnameInput}               id=firstName
+${lastnameInput}                id=lastName
+${emailIput}                    id=userEmail
+${ageInput}                     id=age
+${salaryInput}                  id=salary
+${departmentInput}              id=department
+${rowsData}                     xpath=(//div[@class="rt-tr-group"])

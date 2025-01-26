@@ -98,7 +98,7 @@ DEMORB02
     
 DEMOBT01
     [Documentation]    Verify_Button_Check click in condition And Expect Message_Success
-    [Tags]    Botton
+    [Tags]    Button
     Select menu buttons
     Double Click Buttons
     Verify Double Click Buttons    You have done a double click
