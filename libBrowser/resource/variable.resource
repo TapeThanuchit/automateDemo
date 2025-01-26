@@ -15,7 +15,7 @@ ${doubleClilckButton}           id=doubleClickBtn
 ${doubleClilckMessage}          id=doubleClickMessage
 ${rightClickButton}             id=rightClickBtn
 ${rightClickMessage}            id=rightClickMessage
-${defaultClickButton}           id=GKnhw
+${defaultClickButton}           xpath=//*[text()="Click Me"]
 ${defaultClickMessage}          id=dynamicClickMessage
 
 # Checkbox
@@ -35,3 +35,10 @@ ${messageRetuenRadioCheck}      xpath=//p[@class="mt-3"]
 #Web Tables
 ${webTablesMenu}                text=Web Tables
 ${addNewRecordButton}           id=addNewRecordButton
+${firstnameInput}    id=firstName
+${lastnameInput}    id=lastName
+${emailIput}    id=userEmail
+${ageInput}    id=age
+${salaryInput}    id=salary
+${departmentInput}    id=department
+${rowsDataFirstName}    xpath=(//div[@class="rt-tr-group"]//div//div[@class="rt-td"])
