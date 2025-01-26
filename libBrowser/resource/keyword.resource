@@ -10,7 +10,6 @@ Open Test Browser
 
 New Test Page Browser
     [Arguments]    ${url}
-    New Browser    chromium
     New Page    ${url}    wait_until=commit
 
 Enter Menu Elements
