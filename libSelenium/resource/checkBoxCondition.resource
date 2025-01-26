@@ -1,3 +1,7 @@
+*** Settings ***
+Library    String
+Library    SeleniumLibrary
+
 *** Keywords ***
 Select specify checkbox
     [Arguments]    ${checkBoxSelect}
@@ -7,7 +11,7 @@ Select specify checkbox
         multiple select checkbox process    ${checkBoxData}
     ELSE
         ${index}    checkbox choose    ${checkBoxSelect}
-        Check Checkbox    xpath=(//span[@class="rct-checkbox"])[${index}]
+        Click Element    xpath=(//span[@class="rct-checkbox"])[${index}]
     END
 
 multiple select checkbox process
@@ -15,7 +19,7 @@ multiple select checkbox process
     ${index}    Get Length    ${checkBoxData}
     FOR    ${i}    IN RANGE    0    ${index}
         ${index}    checkbox choose    ${checkBoxData}[${i}]
-        Check Checkbox    xpath=(//span[@class="rct-checkbox"])[${index}]
+        Click Element    xpath=(//span[@class="rct-checkbox"])[${index}]
     END
 
 checkbox choose

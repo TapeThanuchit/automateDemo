@@ -1,8 +1,9 @@
 *** Variables ***
+
 # cardMenu
-${elementsCard}                 text=Elements
+${elementsCard}                 xpath=//*[text()="Elements"]
 # elementCardMenu: TextBox
-${textBoxMenu}                  text=Text Box
+${textBoxMenu}                  xpath=//*[text()="Text Box"]
 ${textBox.fullnameInput}        id=userName
 ${textBox.emailInput}           id=userEmail
 ${textBox.currentAddress}       id=currentAddress
@@ -10,7 +11,7 @@ ${textBox.permanentAddress}     id=permanentAddress
 ${submitButton}                 id=submit
 
 # elementCardMenu: Buttons
-${buttonsMenu}                  text=Buttons
+${buttonsMenu}                  xpath=//*[text()="Buttons"]
 ${doubleClilckButton}           id=doubleClickBtn
 ${doubleClilckMessage}          id=doubleClickMessage
 ${rightClickButton}             id=rightClickBtn
@@ -19,26 +20,26 @@ ${defaultClickButton}           xpath=//*[text()="Click Me"]
 ${defaultClickMessage}          id=dynamicClickMessage
 
 # Checkbox
-${checkboxMenu}                 text=Check Box
+${checkboxMenu}                 xpath=//*[text()="Check Box"]
 ${homeBox}                      xpath=//label[@for="tree-node-home"]//span[@class="rct-checkbox"]
 ${expandButton}                 css=#tree-node > div > button.rct-option.rct-option-expand-all
 ${collapseButton}               css=#tree-node > div > button.rct-option.rct-option-collapse-all
 ${checkboxElements}             xpath=(//span[@class="rct-checkbox"])
 
 #Radio Button
-${radioButtonsMenu}             text=Radio Button
-${yesRadioButton}               text=Yes     #id=yesRadio
+${radioButtonsMenu}             xpath=//*[text()="Radio Button"]
+${yesRadioButton}               xpath=//*[text()="Yes"]
 ${impressiveRadioButon}         id=impressiveRadio
 ${noRadioButton}                id=noRadio
 ${messageRetuenRadioCheck}      xpath=//p[@class="mt-3"]
 
 #Web Tables
-${webTablesMenu}                text=Web Tables
+${webTablesMenu}                xpath=//*[text()="Web Tables"]
 ${addNewRecordButton}           id=addNewRecordButton
-${firstnameInput}    id=firstName
-${lastnameInput}    id=lastName
-${emailIput}    id=userEmail
-${ageInput}    id=age
-${salaryInput}    id=salary
-${departmentInput}    id=department
-${rowsDataFirstName}    xpath=(//div[@class="rt-tr-group"]//div//div[@class="rt-td"])
+${firstnameInput}               id=firstName
+${lastnameInput}                id=lastName
+${emailIput}                    id=userEmail
+${ageInput}                     id=age
+${salaryInput}                  id=salary
+${departmentInput}              id=department
+${rowsData}                     xpath=(//div[@class="rt-tr-group"])
