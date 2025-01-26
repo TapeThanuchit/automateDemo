@@ -3,6 +3,7 @@ Library         SeleniumLibrary
 Resource        ../libSelenium/resource/keyword.resource
 Resource        ../libSelenium/resource/checkBoxCondition.resource
 Resource        ../libSelenium/resource/webTablesPage.resource
+Resource        ../libexcel/excelProcess.resource
 Variables       ../config/envDemo.yml
 Suite Setup    No Operation
 Test Setup      Open Test Browser with headless    ${urlDemo}
@@ -13,49 +14,56 @@ Suite Teardown    Close Browser
 DEMOTB01
     [Documentation]    Verify_TextBox_Can input text all field_Success
     [Tags]    textbox
+    ${fullname}    Set Variable    TestLibSelenium
+    ${email}    Set Variable    test@demo.com
+    ${currentAddress}    Set Variable    Tape Company
+    ${permanentAddress}    Set Variable    Bangkok
     Select menu textbox
-    Input fullname in menu textbox    TestLibBrowserV2
-    Input Email in menu textbox    test@demo.com
-    Input Current Address in menu text Box    currentAddress
-    Input Permanent Address in menu text Box    test
+    Input fullname in menu textbox    ${fullname}
+    Input Email in menu textbox    ${email}
+    Input Current Address in menu text Box    ${currentAddress}
+    Input Permanent Address in menu text Box    ${permanentAddress}
 
 DEMOTB02
+    #Fail Debugging
     [Documentation]    Verify_TextBox_Can input text and submit_Success
     [Tags]    textbox
+    ${fullname}    Set Variable    TestLibSelenium
+    ${email}    Set Variable    test@demo.com
+    ${currentAddress}    Set Variable    Tape Company
+    ${permanentAddress}    Set Variable    Bangkok
     Select menu textbox
-    Input fullname in menu textbox    TestLibBrowser
-    Input Email in menu textbox    test@demo.com
-    Input Current Address in menu text Box    currentAddress
-    Input Permanent Address in menu text Box    test
+    Input fullname in menu textbox    ${fullname}
+    Input Email in menu textbox    ${email}
+    Input Current Address in menu text Box    ${currentAddress}
+    Input Permanent Address in menu text Box    ${permanentAddress}
     Select Submit
+    Element Should Be Visible    ${outputFrom}
+    Element Text Should Be    ${outputName}    Name:${fullname}
+    Element Text Should Be    ${outputEmail}    Email:${email}
+    Element Text Should Be    ${outputCurrentAddress}    Current Address :${currentAddress}
+    Element Text Should Be    ${outputPermanentAddress}    Permanent Address :${permanentAddress}
 
 DEMOTB03
     [Documentation]    Verify_TextBox_Field email incase input data is not email type_fail
     [Tags]    textbox
+    ${fullname}    Set Variable    TestLibSelenium
+    ${email}    Set Variable    test
+    ${currentAddress}    Set Variable    Tape Company
+    ${permanentAddress}    Set Variable    Bangkok
     Select menu textbox
-    Input fullname in menu textbox    TestLibBrowser
-    Input Email in menu textbox    test
-    Input Current Address in menu text Box    currentAddress
-    Input Permanent Address in menu text Box    test
+    Input fullname in menu textbox    ${fullname}
+    Input Email in menu textbox    ${email}
+    Input Current Address in menu text Box    ${currentAddress}
+    Input Permanent Address in menu text Box    ${permanentAddress}
     Select Submit
-
-DEMOTB04
-    [Documentation]    Verify_TextBox_Incase select submit check output and compare equally data_Success 
-    [Tags]    textbox
-    Select menu textbox
-    Input fullname in menu textbox    TestLibBrowser
-    Input Email in menu textbox    test
-    Input Current Address in menu text Box    currentAddress
-    Input Permanent Address in menu text Box    test
-    Select Submit
-
+    Element Should Not Be Visible    ${outputFrom}
 
 DEMOCB01
     [Documentation]    Verify_Check Box_in case select checkbox Home_Success
     [Tags]    checkbox
     Select menu checkbox
     Click Element    ${homeBox}
-    Capture Page Screenshot
 
 DEMOCB02
     [Documentation]    Verify_Check Box_in case select expand and select all and collapse_Success
@@ -126,7 +134,6 @@ DEMOWT02
     Input Department in web tables    IT
     Select Submit
     
-
 DEMOWT03
     [Documentation]    Verify_WebTables_Delete Data in Table with spectify row_Success
     [Tags]    WebTables
@@ -139,9 +146,4 @@ DEMOWT04
     [Documentation]    Verify_WebTables_Add Multiple Data with Excel_Success
     [Tags]    WebTables
     Select menu WebTables
-
-DEMOWT05
-    [Documentation]    Verify_WebTables_Incase page have 5 rows if have data > 5 can select next page_Success
-    [Tags]    WebTables
-    Select menu WebTables
-    Count Data in WebTables
+    Add Data In Registration
