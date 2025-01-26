@@ -9,6 +9,11 @@ ${textBox.emailInput}           id=userEmail
 ${textBox.currentAddress}       id=currentAddress
 ${textBox.permanentAddress}     id=permanentAddress
 ${submitButton}                 id=submit
+${outputFrom}                   id=output
+${outputName}                   id=name
+${outputEmail}                  id=email
+${outputCurrentAddress}         xpath=//p[@id="currentAddress"]
+${outputPermanentAddress}       xpath=//p[@id="permanentAddress"]
 
 # elementCardMenu: Buttons
 ${buttonsMenu}                  xpath=//*[text()="Buttons"]
