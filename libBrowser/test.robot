@@ -144,5 +144,6 @@ DEMOWT04
     [Documentation]    Verify_WebTables_Add Multiple Data with Excel_Success
     [Tags]    WebTables
     Select menu WebTables
+    Add Data In Registration
     
 
