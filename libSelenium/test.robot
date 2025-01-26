@@ -5,9 +5,9 @@ Resource        ../libSelenium/resource/checkBoxCondition.resource
 Resource        ../libSelenium/resource/webTablesPage.resource
 Resource        ../libexcel/excelProcess.resource
 Variables       ../config/envDemo.yml
-Suite Setup    No Operation
-Test Setup      Open Test Browser with headless    ${urlDemo}
-Test Teardown    Capture Page Screenshot
+Suite Setup    Open Test Browser with headless
+Test Setup      Go To    ${urlDemo}
+Test Teardown    Go Back
 Suite Teardown    Close Browser
 
 *** Test Cases ***
@@ -72,7 +72,8 @@ DEMOCB02
     Verify CheckBox Before Expand or After collapse    1
     Expand All Checkbox
     Verify CheckBox After Expand    1
-    Select all checkbox
+    # Select all checkbox
+    Click Element    ${homeBox}
     Collapse All Checkbox
     Verify CheckBox Before Expand or After collapse    1
 
@@ -140,7 +141,6 @@ DEMOWT03
     ${rowData}    Set Variable    1
     Select menu WebTables
     Select Row Delete Data is    ${rowData}
-    Select Submit
 
 DEMOWT04
     [Documentation]    Verify_WebTables_Add Multiple Data with Excel_Success
