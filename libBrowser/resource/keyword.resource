@@ -3,7 +3,6 @@ Library     Browser
 Library     String
 Resource    variable.resource
 
-
 *** Keywords ***
 Open Test Browser
     [Arguments]    ${url}    ${headlessOption}
@@ -120,29 +119,6 @@ Verify CheckBox After Expand
     [Arguments]    ${expect}
     Get Element Count    ${checkboxElements}    >    ${expect}
 
-Select Add Data in WebTables
-    Click    ${addNewRecordButton}
-
-Input first name in web Tables
-    [Arguments]    ${firstname}
-    Fill Text    ${firstnameInput}    ${firstname}
-
-Input Last name in web Tables
-    [Arguments]    ${lastname}
-    Fill Text    ${lastnameInput}    ${lastname}
-
-Input Age in web Tables
-    [Arguments]    ${age}
-    Fill Text    ${ageInput}    ${age}
-
-Input Email in web Tables
-    [Arguments]    ${email}
-    Fill Text    ${emailIput}    ${email}
-
-Input Salary in web Tables
-    [Arguments]    ${salary}
-    Fill Text    ${salaryInput}    ${salary}
-
 Input Department in web tables
     [Arguments]    ${department}
     Fill Text    ${departmentInput}    ${department}
@@ -154,3 +130,4 @@ Select Row Edit Data is
 Select Row Delete Data is
     [Arguments]    ${index}
     Click    id=delete-record-${index}
+
