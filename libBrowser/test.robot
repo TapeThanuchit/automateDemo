@@ -3,7 +3,7 @@ Variables       ../config/envDemo.yml
 Resource        ../libBrowser/resource/keyword.resource
 Resource        ../libBrowser/resource/checkboxCondition.resource
 Resource        ../libBrowser/resource/webTablesPage.resource
-Suite Setup    No Operation
+Suite Setup    New Browser    chromium
 Test Setup      New Test Page Browser    ${urlDemo}
 Test Teardown    Take Screenshot
 Suite Teardown    Close Browser
@@ -36,7 +36,7 @@ DEMOTB02
     Input Current Address in menu text Box    ${currentAddress}
     Input Permanent Address in menu text Box    ${permanentAddress}
     Select Submit
-    Get Element States    ${outputFrom}    equal    visible
+    Get Element States    ${outputFrom}    contains    visible
     Scroll To Element    ${outputFrom}
     Get Text    ${outputName}    equal    Name:${fullname}
     Get Text    ${outputEmail}    equal    Email:${email}
