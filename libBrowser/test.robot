@@ -138,7 +138,6 @@ DEMOWT03
     ${rowData}    Set Variable    1
     Select menu WebTables
     Select Row Delete Data is    ${rowData}
-    Select Submit
 
 DEMOWT04
     [Documentation]    Verify_WebTables_Add Multiple Data with Excel_Success
