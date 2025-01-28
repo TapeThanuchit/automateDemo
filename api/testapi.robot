@@ -3,6 +3,7 @@ Resource    resourceAPI/methodAPI.resource
 Test Setup    Create Session    alias=${alias_demo}    url=${url}
 Test Teardown    Delete All Sessions
 
+
 *** Test Cases ***
 Test01
     [Documentation]    Verify_Autorization_Response have True_Success
@@ -28,21 +29,53 @@ Test03
 Test04
     [Documentation]    Verify_GenarateToken_incase Autorization is True_Success
     [Tags]    GenarateToken
-    &{body}    Create Dictionary    userName=Tape1    password=!qaz2Wsx
+    &{body}    Create Dictionary    userName=${testData.username}    password=${testData.password}
     Call API Check Autorization Expect    ${body}    200
     Call API GenarateToken Expect    ${body}    200
     
 Test05
-    [Documentation]    Verify_User_Sign up User Success_Success
+    [Documentation]    Verify_User_Sign up User_Success
     [Tags]    User
-    &{body}    Create Dictionary    userName=Tape1    password=!qaz2Wsx
-    Call API Post User: Sign up    ${body}    201
+    [Setup]    Skip
+    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
+    ${userId}    ${username}    Call API Post User: Sign up    ${body}    201
 
 Test06
-    [Documentation]    Verify_User_Sign up User Success_Success
+    [Documentation]    Verify_User_Delete User Incase have uuid form sing up_Success
     [Tags]    User
-    &{body}    Create Dictionary    userName=Tape2    password=!qaz2Wsx
+    [Setup]    Skip
+    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
     ${token}    Call API GenarateToken Expect    ${body}    200
-    ${uuid}    Set Variable    ${user}/c9f8fb89-5085-42dd-83e6-03b3864a5a6c
-    Call API User: Delete    ${uuid}    204    ${token}
+    ${uuid}    Set Variable    9646db14-80ca-4ad4-99eb-3cf443e8a84a
+    Call API Delete User    ${uuid}    204    ${token}
+
+Test07
+    [Documentation]    Verify_User_Get User Incase have uuid form sing up_Success
+    [Tags]    User
+    [Setup]    Skip
+    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
+    ${token}    Call API GenarateToken Expect    ${body}    200
+    ${uuid}    Set Variable    9646db14-80ca-4ad4-99eb-3cf443e8a84a
+    Call API Get User   ${uuid}    200    ${token}
+
+Test08
+    [Documentation]    Verify_User_Sign up User And Write Response To file json in Test Data_Success
+    [Tags]    User
+    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
+    ${userId}    ${username}    Call API Post User: Sign up    ${body}    201
+    Save Response User To File Json    ${userId}    ${username}
+
+Test09
+    [Documentation]    Verify_User_Get User Incase Read Response UUID From Testdata_Success
+    [Tags]    User
+    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
+    ${token}    Call API GenarateToken Expect    ${body}    200
+    ${uuid}    Read Data From User Signup
+    Call API Get User   ${uuid}    200    ${token}
+
+
+
+
+
+
 

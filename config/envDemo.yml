@@ -10,3 +10,5 @@ books: /BookStore/v1/Books
 testData:
   userName: tape
   password: Gmxgx86za!
+  userName2: tape2
+  password2: qaz2Wsx!
