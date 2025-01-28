@@ -7,7 +7,7 @@ Variables    ../../config/envDemo.yml
 
 *** Variables ***
 ${alias_demo}    host
-${pathUserJsonData}    ../../TestData//user.json
+${pathUserJsonData}    ../../TestData/user.json
 
 *** Keywords ***
 Call API Check Autorization Expect
