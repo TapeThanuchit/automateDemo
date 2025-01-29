@@ -1,1 +1,14 @@
+url: https://demoqa.com
 urlDemo: https://demoqa.com/elements
+
+#PATH API
+authorized: /Account/v1/Authorized
+genarate: Account/v1/GenerateToken
+user: /Account/v1/User
+books: /BookStore/v1/Books
+
+testData:
+  userName: tape
+  password: Gmxgx86za!
+  userName2: tape2
+  password2: qaz2Wsx!
