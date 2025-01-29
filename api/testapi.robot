@@ -73,9 +73,29 @@ Test09
     ${uuid}    Read Data From User Signup
     Call API Get User   ${uuid}    200    ${token}
 
+Test10
+    [Documentation]    Verify_User_Delete User Incase Read Response UUID From Testdata And Delete Object from json_Success
+    [Tags]    User
+    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
+    ${token}    Call API GenarateToken Expect    ${body}    200
+    ${uuid}    Read Data From User Signup
+    Call API Delete User    ${uuid}    204    ${token}
+    Delete Data in Json When Delete User
 
-
-
+Test Example
+    [Setup]    No Operation
+    [Teardown]    No Operation
+    ${table}    Read table from CSV    ${CURDIR}/../TestData/userData.csv    header=${True}    encoding=UTF-8
+    
+    Log    ${table}
+    ${countRows}    Set Variable    0
+    FOR    ${element}    IN    @{table}
+        
+        Log    ${element}[userId]
+        ${countRows}    Evaluate    ${countRows}+1
+        
+        
+    END
 
 
 
