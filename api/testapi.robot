@@ -11,6 +11,8 @@ Test01
     [Tags]    autorization
     &{body}    Create Dictionary    userName=${testData.userName}    password=${testData.password}
     ${response}    POST On Session    ${alias_demo}    url=${authorized}    json=${body}
+    ${status}    Set Variable    ${response.reason}
+    ${statusCode}    Set Variable    ${response.status_code}
     Should Be Equal    ${True}    ${response.json()}
 
 Test02
@@ -44,10 +46,10 @@ Test05
 Test06
     [Documentation]    Verify_User_Delete User Incase have uuid form sing up_Success
     [Tags]    user
-    [Setup]    Skip
-    &{body}    Create Dictionary    userName=demoapi2    password=Qazwsx3!
+    # [Setup]    Skip
+    &{body}    Create Dictionary    userName=testdd1    password=sHsdq!s23
     ${token}    Call API GenarateToken Expect    ${body}    200
-    ${uuid}    Set Variable    1426f99e-7b97-4ced-b7e7-4838f98445ed
+    ${uuid}    Set Variable    789725f4-61db-4b7d-9854-9bf923bd276e
     Call API Delete User    ${uuid}    204    ${token}
 
 Test07
