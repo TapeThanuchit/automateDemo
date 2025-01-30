@@ -57,7 +57,6 @@ JSON
 
 📜 License
 This project is licensed under the MIT License .
-![Alt Text](https://chat.qwenlm.ai/c/3f93a602-4463-45e4-8f03-4eda0043e107)
 
 ---
 
