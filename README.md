@@ -49,16 +49,15 @@ pip install rpaframework
 ```
 
 📊 Technologies Used
-Node.js - JavaScript runtime
-React - Frontend library
-Express - Backend framework
-MongoDB - Database
+Robot Framework
+RPA
+JSON
 
 ---
 
 📜 License
 This project is licensed under the MIT License .
-License
+![Alt Text](https://chat.qwenlm.ai/c/3f93a602-4463-45e4-8f03-4eda0043e107)
 
 ---
 
