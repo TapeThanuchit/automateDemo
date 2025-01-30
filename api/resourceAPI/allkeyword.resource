@@ -5,13 +5,15 @@ Library     OperatingSystem
 Library     RPA.Tables
 Library     Collections
 Library     String
+Library     RPA.Excel.Files
 
 
 *** Variables ***
-${pathUserJson}     ${CURDIR}/../../TestData/user.json
-${pathUsersJson}    ${CURDIR}/../../TestData/users.json
-${pathUUIDsJson}    ${CURDIR}/../../TestData/uuids.json
-${pathCSV}          ${CURDIR}/../../TestData/userData.csv
+${pathUserJson}         ${CURDIR}/../../TestData/user.json
+${pathUsersJson}        ${CURDIR}/../../TestData/users.json
+${pathUUIDsJson}        ${CURDIR}/../../TestData/uuids.json
+${pathCSV}              ${CURDIR}/../../TestData/userData.csv
+${columnCharactor}      A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
 
 
 *** Keywords ***
@@ -79,3 +81,72 @@ Load User Data
     ${userId}    Get Elements    ${json}    $.data[*]..userId
     ${password}    Get Elements    ${json}    $.data[*]..password
     RETURN    ${userId}    ${password}
+
+Log Response To Excel
+    [Arguments]    ${response}
+    ${statusCode}    Set Variable    ${response.status_code}
+    IF    '${statusCode}' == '201'
+        ${listTitle}    Create Test Result API Sign up    signIn
+        @{response_data_all}    Create List
+        ${userId}    Get Elements and access to data    ${response.json()}    $.userId
+        ${username}    Get Elements and access to data    ${response.json()}    $.username
+        ${books}    Get Elements and access to data    ${response.json()}    $.books
+        ${inbook}    Get Length    ${books}
+        Append To List    ${response_data_all}    ${userId}    ${username}    ${books}
+        IF    '${inbook}' != '0'
+            ${isbn}    Get Elements and access to data    ${response.json()}    $.books..isbn
+            Append To List    ${response_data_all}    ${isbn}
+        END
+        Write Test Result    ${listTitle}    ${response_data_all}
+    ELSE
+        ${code}    Get Elements and access to data    ${response.json()}    $.code
+        ${message}    Get Elements and access to data    ${response.json()}    $.message
+    END
+
+Create Test Result API Sign up
+    [Arguments]    ${sheetname}
+    Run Keyword And Ignore Error    Create Worksheet    ${sheetname}
+    Set Active Worksheet    ${sheetname}
+    @{column}    Split String    ${columnCharactor}    ,
+    ${titleResult}    Set Variable
+    ...    Testcases,TestScenario,API_Name,StatusCode,ResponseAll,UserId,Username,Books,isbn,title,subTitle,author,publish_date,publisher,pages,description,website
+    @{listTitle}    Split String    ${titleResult}    ,
+    ${index}    Set Variable    0
+    FOR    ${headerData}    IN    @{listTitle}
+        Set Cell Value    1    ${column}[${index}]    ${headerData}
+        ${index}    Evaluate    ${index}+1
+    END
+    RETURN    @{listTitle}
+
+Write Test Result
+    [Arguments]    ${listTitle}    ${response_data_all}
+    @{column}    Split String    ${columnCharactor}    ,
+    ${index}    Set Variable    0
+    FOR    ${element}    IN    @{listTitle}
+        ${rows}    Find empty row
+        ${result}    Set Variable    ${response_data_all}[${index}]
+        ${column_Index}    Set Variable    ${column}[${index}]
+        Set Cell Value    ${rows}    ${column_Index}    ${response_data_all}[${index}]
+    END
+    Save Workbook
+
+Compare Expect Code
+    [Arguments]    ${expect_code}    ${response_code}
+    Log Many    ${expect_code}    ${response_code}
+    IF    '${expect_code}' == '${response_code}'
+        ${result}    Set Variable    PASSED
+    ELSE IF    '${expect_code}' == '${None}' or '${expect_code}' == '${EMPTY}'
+        ${result}    Set Variable    Have Not Expect
+    ELSE
+        ${result}    Set Variable    FAILED
+    END
+    RETURN    ${result}
+
+Set Color Message
+    [Arguments]    ${result}    ${column_Index}    ${rows}
+    Log    ${column_Index}${rows}
+    IF    '${result}' == 'PASSED'
+        Set Styles    ${column_Index}${rows}    color=006700
+    ELSE
+        Set Styles    ${column_Index}${rows}    color=FF0000
+    END
