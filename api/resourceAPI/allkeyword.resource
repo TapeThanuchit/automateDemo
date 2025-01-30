@@ -1,70 +1,81 @@
 *** Settings ***
-Library    JSONLibrary
-Library    JsonValidator
-Library    OperatingSystem
-Library    RPA.Tables
-Library    Collections
-Library    String
+Library     JSONLibrary
+Library     JsonValidator
+Library     OperatingSystem
+Library     RPA.Tables
+Library     Collections
+Library     String
+
 
 *** Variables ***
-${pathUserJsonData}    ../../TestData/user.json
-${path}    ${CURDIR}/${pathUserJsonData}
+${pathUserJson}     ${CURDIR}/../../TestData/user.json
+${pathUsersJson}    ${CURDIR}/../../TestData/users.json
+${pathUUIDsJson}    ${CURDIR}/../../TestData/uuids.json
+${pathCSV}          ${CURDIR}/../../TestData/userData.csv
+
 
 *** Keywords ***
 Get Elements and access to data
     [Arguments]    ${json_source}    ${expr}
     ${data}    Get Elements    ${json_source}    ${expr}
     ${data}    Set Variable    ${data}[0]
-    [Return]    ${data}
+    RETURN    ${data}
 
 Save Response User To File Json
     [Arguments]    ${uuid}    ${usernameData}
-    Create File    ${path}    {}
-    ${json}    Load Json From File    ${path}
-    ${userID}    Create Dictionary   userID=${uuid}
-    ${username}    Create Dictionary   username=${usernameData}
+    Create File    ${pathUserJson}    {}
+    ${json}    Load Json From File    ${pathUserJson}
+    ${userID}    Create Dictionary    userID=${uuid}
+    ${username}    Create Dictionary    username=${usernameData}
     ${json}    Add Object To Json    ${json}    $    ${userID}
     ${json}    Add Object To Json    ${json}    $    ${username}
+    ${json}    Convert Json To String    ${json}
+    Create File    ${pathUserJson}    ${json}
+
+Save Response Muti Users To File Json
+    [Arguments]    ${uuid}    ${usernameData}    ${json}
+    ${uuidData}    Create Dictionary    userID=${uuid}    username=${usernameData}
+    ${jsonRecord}    Add Object To Json    ${json}    $.data    ${uuidData}
+    RETURN    ${jsonRecord}
+
+Create JSON File To Save Response
+    [Arguments]    ${path}    ${json}
     ${json}    Convert Json To String    ${json}
     Create File    ${path}    ${json}
 
 Read Data From User Signup
-    ${json}    Load Json From File    ${path}
+    ${json}    Load Json From File    ${pathUserJson}
     ${uuid}    Get Elements and access to data    ${json}    $.userID
-    [Return]    ${uuid}
+    RETURN    ${uuid}
+
+Read Data From Users Signup
+    [Arguments]    ${path}    ${exprIndex}
+    ${json}    Load Json From File    ${path}
+    ${uuid}    Get Elements and access to data    ${json}    ${exprIndex}
+    RETURN    ${uuid}
 
 Delete Data in Json When Delete User
-    ${json}    Load Json From File    ${path}
+    ${json}    Load Json From File    ${pathUserJson}
     ${json}    Delete Object From Json    ${json}    $.*
     ${jsonStr}    Convert Json To String    ${json}
-    Create File    ${path}    ${jsonStr}
+    Create File    ${pathUserJson}    ${jsonStr}
 
-Create JSON File with Multi Data
-    [Documentation]    Create a JSON file with expected structure and add user data.
-    ${path}    Set Variable    ${CURDIR}/../TestData/test.json
-    # Define the initial empty JSON structure
-    
-    Create File    ${path}    {"data":[]}
+Create JSON File With Read Data From CSV
+    @{rowsData}    Read table from CSV    ${pathCSV}    encoding=UTF-8
+    Create File    ${pathUsersJson}    {"data":[]}
+    ${json}    Load Json From File    ${pathUsersJson}
+    &{user}    Create Dictionary
+    FOR    ${data}    IN    @{rowsData}
+        ${userId}    Set Variable    ${data}[userId]
+        ${password}    Set Variable    ${data}[password]
+        Set To Dictionary    ${user}    userId=${userId}    password=${password}
+        ${json}    Add Object To Json    ${json}    $.data    ${user}
+    END
+    ${json}    Convert JSON to String    ${json}
+    Create File    ${pathUsersJson}    ${json}
 
-    ${json}    Load Json From File    ${path}
-    # Define user dictionaries
-    ${user1}    Create Dictionary    user=test1
-    ${user2}    Create Dictionary    user=test2
-
-    # Add user objects to JSON data array
-    ${json}    Add Object To Json    ${json}    $.data    ${user1}
-    ${json}    Add Object To Json    ${json}    $.data    ${user2}
-
-    # Convert JSON to string and write to file
-    ${json_string}    Convert Json To String    ${json}
-    Create File    ${path}    ${json_string}
-
-    ${json}    Load Json From File    ${path}
-    ${respone}    Get Elements    ${json}    $.data[0]..user
-    Log To Console    message:${respone}
-
-    ###
-    ${json}    Delete Object From Json    ${json}   $.data[0]
-    
-    ${respone}    Get Elements    ${json}    $.data[0]..user
-    Log To Console    messageAfter Delete:${respone}
+Load User Data
+    ${json}    Load Json From File    ${pathUsersJson}
+    ${userId}    Get Elements    ${json}    $.data[*]..userId
+    ${password}    Get Elements    ${json}    $.data[*]..password
+    RETURN    ${userId}    ${password}
