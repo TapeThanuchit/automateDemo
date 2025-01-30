@@ -18,7 +18,15 @@ To get started with this project, follow these steps:
 - Selenium
 - Browser
 
-### Steps
+### How To
+
+# Install Selenium Library
+
+https://github.com/robotframework/SeleniumLibrary/
+
+# Install Selenium Library
+
+https://github.com/MarketSquare/robotframework-browser
 
 ```bash
 # Clone the repository
@@ -29,12 +37,6 @@ cd your-repo-name
 
 # Install Robot Framework
 pip install robotframework
-
-# Install Selenium Library
-https://github.com/robotframework/SeleniumLibrary/
-
-# Install Selenium Library
-https://github.com/MarketSquare/robotframework-browser
 
 # Install Request Library
 pip install robotframework-requests
@@ -52,17 +54,25 @@ React - Frontend library
 Express - Backend framework
 MongoDB - Database
 
+---
+
 📜 License
 This project is licensed under the MIT License .
 License
+
+---
 
 🏆 Acknowledgments
 Inspiration: Some Awesome Project
 Special thanks to contributors and supporters!
 
+---
+
 📢 Feedback & Support
 If you have any questions, feedback, or need support, feel free to open an issue or contact us at:
 📧 thanuchit.p@gmail.com
+
+---
 
 🚦 Status Badges
 Build Status
