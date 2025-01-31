@@ -6,7 +6,9 @@
 - Run Test Demoqa With library Selenium :file_folder: **PATH** libSeleniun/test.robot
 - Run Test Books Store API With library Request :file_folder: **PATH** api/testapi.robot
 
-Resource [Demoqa] (https://demoqa.com)
+# Resource :pray:
+
+- [Demoqa](https://demoqa.com)
 
 ### Prerequisites
 
