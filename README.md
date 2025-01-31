@@ -1,57 +1,60 @@
-# 🌟 My Awesome Project
-
-> A brief description of what this project does and who it's for.  
-> Example: "A simple yet powerful tool to manage your daily tasks with ease."
+# 🌟 My Demo Automate Project
 
 ---
 
-## 🛠️ Installation
-
-To get started with this project, follow these steps:
-
 ### Prerequisites
 
-- Robot Framework v6.1.1 or (higher)
+- Robot Framework v6.1.1 or higher
 - RPA Framework
 - Request
 - JSONLibrary
 - Selenium
 - Browser
 
-### How To
+### How To Install
 
-# Install Selenium Library
+#### Install Selenium Library
 
-https://github.com/robotframework/SeleniumLibrary/
+- [Selenium Library GitHub](https://github.com/robotframework/SeleniumLibrary/)
 
-# Install Selenium Library
+#### Install Browser Library
 
-https://github.com/MarketSquare/robotframework-browser
+- [Browser Library GitHub](https://github.com/MarketSquare/robotframework-browser)
 
+#### Clone the repository
 ```bash
-# Clone the repository
 git clone https://github.com/TapeThanuchit/automateDemo.git
+
+
+# Clone the repository
+```bash
+git clone https://github.com/TapeThanuchit/automateDemo.git
+```
 
 # Navigate to the project directory
 cd your-repo-name
 
 # Install Robot Framework
+```bash
 pip install robotframework
-
+```
 # Install Request Library
+```bash
 pip install robotframework-requests
-
+```
 # Install JSONLibrary
+```bash
 pip install robotframework-jsonlibrary
-
+```
 # Install RPA Framework
+```bash
 pip install rpaframework
 ```
 
 📊 Technologies Used
 Robot Framework
-RPA
-JSON
+RPA Framwwork
+JSON Library
 
 ---
 
@@ -60,19 +63,8 @@ This project is licensed under the MIT License .
 
 ---
 
-🏆 Acknowledgments
-Inspiration: Some Awesome Project
-Special thanks to contributors and supporters!
-
----
-
 📢 Feedback & Support
 If you have any questions, feedback, or need support, feel free to open an issue or contact us at:
 📧 thanuchit.p@gmail.com
 
----
 
-🚦 Status Badges
-Build Status
-Coverage
-Version
