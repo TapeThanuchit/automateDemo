@@ -21,16 +21,6 @@
 
 - [Browser Library GitHub](https://github.com/MarketSquare/robotframework-browser)
 
-#### Clone the repository
-```bash
-git clone https://github.com/TapeThanuchit/automateDemo.git
-
-
-# Clone the repository
-```bash
-git clone https://github.com/TapeThanuchit/automateDemo.git
-```
-
 # Navigate to the project directory
 cd your-repo-name
 
