@@ -1,6 +1,12 @@
 # 🌟 My Demo Automate Project
 
 ---
+# What's in this project :question:
+- Run Test Demoqa With library Browser :file_folder: **PATH** libBrowser/test.robot
+- Run Test Demoqa With library Selenium :file_folder: **PATH** libSeleniun/test.robot
+- Run Test Books Store API With library Request :file_folder: **PATH** api/testapi.robot
+
+Resource [Demoqa] (https://demoqa.com)
 
 ### Prerequisites
 
