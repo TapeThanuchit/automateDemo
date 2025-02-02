@@ -150,3 +150,21 @@ Set Color Message
     ELSE
         Set Styles    ${column_Index}${rows}    color=FF0000
     END
+
+
+Log Result To Excel
+    [Arguments]    ${testcase}    ${testscenario}    ${method}    ${apipath}    ${expecCode}    ${actualCode}
+    Open Workbook    ${CURDIR}/../../TestResult/ReportTestDemo.xlsx
+    Set Active Worksheet    Report
+    @{rowsData}    Read Worksheet
+    ${rows}    Find Empty Row
+    Set Cell Value    ${rows}    A    ${testcase}
+    Set Cell Value    ${rows}    B    ${testscenario}
+    Set Cell Value    ${rows}    C    ${method}
+    Set Cell Value    ${rows}    D    ${apipath}
+    Set Cell Value    ${rows}    E    ${expecCode}
+    Set Cell Value    ${rows}    F    ${actualCode}
+    ${result}    Compare Expect Code    ${expecCode}    ${actualCode}
+    Set Color Message    ${result}    G    ${rows}
+    Set Cell Value    ${rows}    G    ${result}
+    Save Workbook

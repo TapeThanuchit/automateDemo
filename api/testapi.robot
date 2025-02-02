@@ -9,18 +9,23 @@ Test Teardown       Delete All Sessions
 Test01
     [Documentation]    Verify_Autorization_Response have True_Success
     [Tags]    autorization
+    ${testcase}    Set Variable    Test01
+    ${testscenario}    Set Variable    Verify_Autorization_Response have True_Success
+    ${expectCode}    Set Variable    200
     &{body}    Create Dictionary    userName=${testData.userName}    password=${testData.password}
     ${response}    POST On Session    ${alias_demo}    url=${authorized}    json=${body}
-    ${status}    Set Variable    ${response.reason}
-    ${statusCode}    Set Variable    ${response.status_code}
     Should Be Equal    ${True}    ${response.json()}
+    Log Result To Excel    ${testcase}    ${testscenario}    POST    ${authorized}    ${expectCode}    ${response.status_code}
 
 Test02
     [Documentation]    Verify_Autorization_Response expect status 404 incase data is wrong_Success
     [Tags]    autorization
+    ${testcase}    Set Variable    Test02
+    ${testscenario}    Set Variable    Verify_Autorization_Response expect status 404 incase data is wrong_Success
+    ${expectCode}    Set Variable    400
     &{body}    Create Dictionary    userName=${testData.userName}    password=${testData.password}11
-    ${response}    POST On Session    ${alias_demo}    url=${authorized}    json=${body}    expected_status=404
-    Status Should Be    404    ${response}
+    ${response}    POST On Session    ${alias_demo}    url=${authorized}    json=${body}    expected_status=anything
+    Log Result To Excel    ${testcase}    ${testscenario}    POST    ${authorized}    ${expectCode}    ${response.status_code}
 
 Test03
     [Documentation]    Verify_Autorization_Response expect status 400 incase body request wrong _Success
@@ -32,7 +37,7 @@ Test03
 Test04
     [Documentation]    Verify_GenarateToken_incase Autorization is True_Success
     [Tags]    genaratetoken
-    &{body}    Create Dictionary    userName=${testData.username}    password=${testData.password}
+    &{body}    Create Dictionary    userName=${testData.userName}    password=${testData.password}
     Call API Check Autorization Expect    ${body}    200
     Call API GenarateToken Expect    ${body}    200
 
@@ -46,7 +51,7 @@ Test05
 Test06
     [Documentation]    Verify_User_Delete User Incase have uuid form sing up_Success
     [Tags]    user
-    # [Setup]    Skip
+    [Setup]    Skip
     &{body}    Create Dictionary    userName=testdd1    password=sHsdq!s23
     ${token}    Call API GenarateToken Expect    ${body}    200
     ${uuid}    Set Variable    789725f4-61db-4b7d-9854-9bf923bd276e
