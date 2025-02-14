@@ -13,9 +13,15 @@ Test01
     ${testscenario}    Set Variable    Verify_Autorization_Response have True_Success
     ${expectCode}    Set Variable    200
     &{body}    Create Dictionary    userName=${testData.userName}    password=${testData.password}
-    ${response}    POST On Session    ${alias_demo}    url=${authorized}    json=${body}
+    ${response}    POST On Session    ${alias_demo}    url=${authorized}    json=${body}    expected_status=anything
     Should Be Equal    ${True}    ${response.json()}
-    Log Result To Excel    ${testcase}    ${testscenario}    POST    ${authorized}    ${expectCode}    ${response.status_code}
+    Log Result To Excel
+    ...    ${testcase}
+    ...    ${testscenario}
+    ...    POST
+    ...    ${authorized}
+    ...    ${expectCode}
+    ...    ${response.status_code}
 
 Test02
     [Documentation]    Verify_Autorization_Response expect status 404 incase data is wrong_Success
@@ -25,7 +31,13 @@ Test02
     ${expectCode}    Set Variable    400
     &{body}    Create Dictionary    userName=${testData.userName}    password=${testData.password}11
     ${response}    POST On Session    ${alias_demo}    url=${authorized}    json=${body}    expected_status=anything
-    Log Result To Excel    ${testcase}    ${testscenario}    POST    ${authorized}    ${expectCode}    ${response.status_code}
+    Log Result To Excel
+    ...    ${testcase}
+    ...    ${testscenario}
+    ...    POST
+    ...    ${authorized}
+    ...    ${expectCode}
+    ...    ${response.status_code}
 
 Test03
     [Documentation]    Verify_Autorization_Response expect status 400 incase body request wrong _Success
