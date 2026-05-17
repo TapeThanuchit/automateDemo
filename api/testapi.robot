@@ -12,16 +12,11 @@ Test01
     ${testcase}    Set Variable    Test01
     ${testscenario}    Set Variable    Verify_Autorization_Response have True_Success
     ${expectCode}    Set Variable    200
-    &{body}    Create Dictionary    userName=${testData.userName}    password=${testData.password}
+    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
     ${response}    POST On Session    ${alias_demo}    url=${authorized}    json=${body}    expected_status=anything
+    Log to console   ${response.json()}
     Should Be Equal    ${True}    ${response.json()}
-    Log Result To Excel
-    ...    ${testcase}
-    ...    ${testscenario}
-    ...    POST
-    ...    ${authorized}
-    ...    ${expectCode}
-    ...    ${response.status_code}
+    
 
 Test02
     [Documentation]    Verify_Autorization_Response expect status 404 incase data is wrong_Success
@@ -31,13 +26,7 @@ Test02
     ${expectCode}    Set Variable    400
     &{body}    Create Dictionary    userName=${testData.userName}    password=${testData.password}11
     ${response}    POST On Session    ${alias_demo}    url=${authorized}    json=${body}    expected_status=anything
-    Log Result To Excel
-    ...    ${testcase}
-    ...    ${testscenario}
-    ...    POST
-    ...    ${authorized}
-    ...    ${expectCode}
-    ...    ${response.status_code}
+   
 
 Test03
     [Documentation]    Verify_Autorization_Response expect status 400 incase body request wrong _Success
@@ -49,33 +38,33 @@ Test03
 Test04
     [Documentation]    Verify_GenarateToken_incase Autorization is True_Success
     [Tags]    genaratetoken
-    &{body}    Create Dictionary    userName=${testData.userName}    password=${testData.password}
+    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
     Call API Check Autorization Expect    ${body}    200
     Call API GenarateToken Expect    ${body}    200
 
 Test05
     [Documentation]    Verify_User_Sign up User_Success
     [Tags]    user
-    [Setup]    Skip
-    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
+    #[Setup]    Skip
+    &{body}    Create Dictionary    userName=demoapi1    password=Qazwsx1!
     ${userId}    ${username}    Call API Post User: Sign up    ${body}    201
 
 Test06
     [Documentation]    Verify_User_Delete User Incase have uuid form sing up_Success
     [Tags]    user
-    [Setup]    Skip
-    &{body}    Create Dictionary    userName=testdd1    password=sHsdq!s23
+    
+    &{body}    Create Dictionary    userName=demoapi1    password=Qazwsx1!
     ${token}    Call API GenarateToken Expect    ${body}    200
-    ${uuid}    Set Variable    789725f4-61db-4b7d-9854-9bf923bd276e
+    ${uuid}    Set Variable    530edbac-96d8-4bc3-bbd6-5a709893b224
     Call API Delete User    ${uuid}    204    ${token}
 
 Test07
     [Documentation]    Verify_User_Get User Incase have uuid form sing up_Success
     [Tags]    user
-    [Setup]    Skip
-    &{body}    Create Dictionary    userName=${testData.userName2}    password=${testData.password2}
+    
+    &{body}    Create Dictionary    userName=demoapi1    password=Qazwsx1!
     ${token}    Call API GenarateToken Expect    ${body}    200
-    ${uuid}    Set Variable    9646db14-80ca-4ad4-99eb-3cf443e8a84a
+    ${uuid}    Set Variable    530edbac-96d8-4bc3-bbd6-5a709893b224
     Call API Get User    ${uuid}    200    ${token}
 
 Test08

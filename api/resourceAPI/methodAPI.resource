@@ -27,6 +27,7 @@ Call API GenarateToken Expect
 Call API Post User: Sign up
     [Arguments]    ${body}    ${expect}
     ${response}    POST On Session    ${alias_demo}    url=${user}    json=${body}    expected_status=${expect}
+    Log    ${response.json()}
     ${userId}    Get Elements and access to data    ${response.json()}    $.userID
     ${username}    Get Elements and access to data    ${response.json()}    $.username
     RETURN    ${userId}    ${username}

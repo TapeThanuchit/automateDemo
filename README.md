@@ -48,12 +48,17 @@ pip install robotframework-jsonlibrary
 ```bash
 pip install rpaframework
 ```
+# Install jsonvalidator
+```bash
+pip install robotframework-jsonvalidator
+```
 
 📊 Technologies Used
 Robot Framework
+Request Library
 RPA Framwwork
 JSON Library
-
+jsonvalidator
 ---
 
 📜 License
