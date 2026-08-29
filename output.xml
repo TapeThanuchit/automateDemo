@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.12.10 on win32)" generated="2026-07-03T10:03:06.386574" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Excel Keywords (2)" source="d:\automateDemo\pyxrobot\test_excel_keywords (2).robot">
+<test id="s1-t1" name="Structure And Misc Keywords" line="79">
+<kw name="Create Workbook" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.709713" level="INFO">สร้าง workbook ใหม่แล้ว (sheet: Data)</msg>
+<arg>${TEST_FILE}</arg>
+<arg>sheet_name=Data</arg>
+<doc>สร้าง workbook ใหม่ในหน่วยความจำ (ยังไม่บันทึกลงไฟล์จนกว่าจะเรียก Save Workbook)</doc>
+<status status="PASS" start="2026-07-03T10:03:06.453581" elapsed="0.258104"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-07-03T10:03:06.713681" level="INFO">${rows} = [['Name', 'Age'], ['Alice', 30], ['Bob', 25], ['Carol', 40]]</msg>
+<var>${rows}</var>
+<arg>[["Name", "Age"], ["Alice", 30], ["Bob", 25], ["Carol", 40]]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-07-03T10:03:06.711685" elapsed="0.001996"/>
+</kw>
+<kw name="Append Rows To Worksheet" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.714677" level="INFO">เพิ่ม 4 แถวใน sheet: Data</msg>
+<arg>${rows}</arg>
+<doc>เพิ่มข้อมูลหลายแถวต่อท้าย worksheet</doc>
+<status status="PASS" start="2026-07-03T10:03:06.714677" elapsed="0.000000"/>
+</kw>
+<kw name="Worksheet Exists" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.715677" level="INFO">${exists} = True</msg>
+<var>${exists}</var>
+<arg>Data</arg>
+<doc>คืนค่า True/False ว่ามี worksheet ชื่อนี้อยู่ใน workbook หรือไม่</doc>
+<status status="PASS" start="2026-07-03T10:03:06.715677" elapsed="0.000995"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${exists}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-07-03T10:03:06.717671" elapsed="0.000000"/>
+</kw>
+<kw name="Get Active Worksheet" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.719123" level="INFO">${active} = Data</msg>
+<var>${active}</var>
+<doc>คืนค่าชื่อ worksheet ที่ active อยู่ในปัจจุบัน</doc>
+<status status="PASS" start="2026-07-03T10:03:06.718670" elapsed="0.000453"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${active}</arg>
+<arg>Data</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-07-03T10:03:06.719123" elapsed="0.001001"/>
+</kw>
+<kw name="Rename Worksheet" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.721322" level="INFO">เปลี่ยนชื่อ worksheet 'Data' เป็น 'MainData'</msg>
+<arg>MainData</arg>
+<arg>name=Data</arg>
+<doc>เปลี่ยนชื่อ worksheet</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="List Worksheets" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.721322" level="INFO">${sheets} = ['MainData']</msg>
+<var>${sheets}</var>
+<doc>คืนค่ารายชื่อ worksheet ทั้งหมดใน workbook เป็น list</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="List Should Contain Value" owner="Collections">
+<arg>${sheets}</arg>
+<arg>MainData</arg>
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="Insert Rows Before" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.721322" level="INFO">แทรก 1 แถวก่อนแถวที่ 2 (sheet: MainData)</msg>
+<arg>row=2</arg>
+<doc>แทรกแถวว่างก่อนแถวที่ระบุ</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="Get Cell Value" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.721322" level="INFO">${value} = None</msg>
+<var>${value}</var>
+<arg>row=2</arg>
+<arg>column=1</arg>
+<doc>อ่านค่าจาก cell โดยระบุตำแหน่งเป็น row/column (เริ่มนับที่ 1)</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${value}</arg>
+<arg>${NONE}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="Delete Rows" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.721322" level="INFO">ลบ 1 แถว เริ่มจากแถวที่ 2 (sheet: MainData)</msg>
+<arg>row=2</arg>
+<doc>ลบแถวออกจาก worksheet</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="Insert Columns Before" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.721322" level="INFO">แทรก 1 คอลัมน์ก่อนคอลัมน์ B (sheet: MainData)</msg>
+<arg>column=B</arg>
+<doc>แทรกคอลัมน์ว่างก่อนคอลัมน์ที่ระบุ</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="Delete Columns" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.721322" level="INFO">ลบ 1 คอลัมน์ เริ่มจากคอลัมน์ B (sheet: MainData)</msg>
+<arg>column=B</arg>
+<doc>ลบคอลัมน์ออกจาก worksheet</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="Set Cell Value" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.721322" level="INFO">ตั้งค่า cell (row=5, column=1) = Temp (sheet: MainData)</msg>
+<arg>row=5</arg>
+<arg>column=1</arg>
+<arg>value=Temp</arg>
+<doc>เขียนค่าลง cell โดยระบุตำแหน่งเป็น row/column (เริ่มนับที่ 1)</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.000000"/>
+</kw>
+<kw name="Clear Cell Range" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.736430" level="INFO">ล้างค่าในช่วง A5 แล้ว (sheet: MainData)</msg>
+<arg>A5</arg>
+<doc>ล้างค่าใน cell เดียวหรือช่วง cell (ไม่ลบ format)</doc>
+<status status="PASS" start="2026-07-03T10:03:06.721322" elapsed="0.016105"/>
+</kw>
+<kw name="Get Cell Value" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.738878" level="INFO">${cleared} = None</msg>
+<var>${cleared}</var>
+<arg>row=5</arg>
+<arg>column=1</arg>
+<doc>อ่านค่าจาก cell โดยระบุตำแหน่งเป็น row/column (เริ่มนับที่ 1)</doc>
+<status status="PASS" start="2026-07-03T10:03:06.737427" elapsed="0.001451"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${cleared}</arg>
+<arg>${NONE}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-07-03T10:03:06.738878" elapsed="0.000000"/>
+</kw>
+<kw name="Copy Cell Values" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.738878" level="INFO">คัดลอกค่าจาก A1:B4 ไปที่ D1 แล้ว (sheet: MainData -&gt; MainData)</msg>
+<arg>A1:B4</arg>
+<arg>target_cell=D1</arg>
+<doc>คัดลอกค่าจากช่วง cell ต้นทางไปวางที่ cell ปลายทาง (มุมบนซ้าย)</doc>
+<status status="PASS" start="2026-07-03T10:03:06.738878" elapsed="0.000000"/>
+</kw>
+<kw name="Get Cell Value" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.738878" level="INFO">${copied} = Name</msg>
+<var>${copied}</var>
+<arg>row=1</arg>
+<arg>column=D</arg>
+<doc>อ่านค่าจาก cell โดยระบุตำแหน่งเป็น row/column (เริ่มนับที่ 1)</doc>
+<status status="PASS" start="2026-07-03T10:03:06.738878" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${copied}</arg>
+<arg>Name</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-07-03T10:03:06.738878" elapsed="0.000000"/>
+</kw>
+<kw name="Find Empty Row" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.738878" level="INFO">${empty_row} = 5</msg>
+<var>${empty_row}</var>
+<doc>หาเลขแถวว่างแถวแรก (แถวที่ทุก cell ไม่มีค่าเลย) ใน worksheet</doc>
+<status status="PASS" start="2026-07-03T10:03:06.738878" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${empty_row} &gt; 0</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2026-07-03T10:03:06.738878" elapsed="0.000000"/>
+</kw>
+<kw name="Save Workbook" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.776295" level="INFO">บันทึกไฟล์แล้ว: d:\automateDemo\pyxrobot/testdata/testbook.xlsx</msg>
+<doc>บันทึก workbook ลงไฟล์</doc>
+<status status="PASS" start="2026-07-03T10:03:06.738878" elapsed="0.038413"/>
+</kw>
+<kw name="Close Workbook" owner="ExcelKeywords_new">
+<msg time="2026-07-03T10:03:06.778289" level="INFO">ปิด workbook แล้ว</msg>
+<doc>ปิด workbook ที่เปิดอยู่ (ไม่ได้ save ให้อัตโนมัติ ต้องเรียก Save Workbook ก่อนถ้าต้องการเก็บการเปลี่ยนแปลง)</doc>
+<status status="PASS" start="2026-07-03T10:03:06.777291" elapsed="0.000998"/>
+</kw>
+<status status="PASS" start="2026-07-03T10:03:06.453581" elapsed="0.325706"/>
+</test>
+<status status="PASS" start="2026-07-03T10:03:06.403202" elapsed="0.377081"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Test Excel Keywords (2)" id="s1" pass="1" fail="0" skip="0">Test Excel Keywords (2)</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

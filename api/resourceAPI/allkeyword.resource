@@ -168,3 +168,8 @@ Log Result To Excel
     Set Color Message    ${result}    G    ${rows}
     Set Cell Value    ${rows}    G    ${result}
     Save Workbook
+
+Check platform system
+    [Documentation]    Return currently Operating system
+    ${os}    Evaluate    platform.system()    platform
+    Log To Console    ${os}

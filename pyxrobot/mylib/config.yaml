@@ -1,0 +1,25 @@
+# config.yaml
+# -----------
+# เก็บ config สำหรับ MSAL login
+# *** อย่า commit ไฟล์นี้ขึ้น git *** → เพิ่มใน .gitignore
+
+azure:
+  tenant_id: "a21a4422-036f-4a04-a71b-895636977953"
+  ms_client_id: "b41b6acd-3f8f-4ccd-a6ff-5daf64cdf44e"
+  redirect_uri: "https://login.live.com/oauth20_desktop.srf"
+  scopes:
+    - "User.Read.All"
+    - "openid"
+    - "profile"
+    - "Group.Read.All"
+    - "offline_access"
+
+credentials:
+  username: "00552@UATTMB.tmbbank.com"
+  password: "Tmb@12345"
+
+tablet_auth:
+  token_endpoint: "https://cmtop-sit1.tau2904.com/v1/tablet-auth-service/oauth2/token"
+  client_id: "af7e1380-d22e-42a1-80b4-32a36a82935d"
+  client_secret: "W5^L<nUn#XBwMUQfyVj^5Jmp6Mkph7C280!Q4hb6VZBkl>pG99@qPcVZ3EHXiWWI"
+  scope: "Staff.Tablet"
